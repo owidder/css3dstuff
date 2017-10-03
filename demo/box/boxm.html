@@ -25,7 +25,7 @@
             perspective: 1200px;
         }
 
-        #cube {
+        .cube {
             width: 100%;
             height: 100%;
             position: absolute;
@@ -39,11 +39,17 @@
             transform: translateZ( -100px );
         }
 
-        #cube.spinning {
+        .cube.spinning._1 {
             -webkit-animation: spinCubeWebkit 8s infinite ease-in-out;
             -moz-animation: spinCubeMoz    8s infinite ease-in-out;
             -o-animation: spinCubeO      8s infinite ease-in-out;
             animation: spinCube       8s infinite ease-in-out;
+        }
+        .cube.spinning._2 {
+            -webkit-animation: spinCubeWebkit 2s infinite ease-in-out;
+            -moz-animation: spinCubeMoz    2s infinite ease-in-out;
+            -o-animation: spinCubeO      2s infinite ease-in-out;
+            animation: spinCube       2s infinite ease-in-out;
         }
 
         @-webkit-keyframes spinCubeWebkit {
@@ -61,7 +67,7 @@
             100% { transform: translateZ( -100px ) rotateX( 360deg ) rotateY( 360deg ); }
         }
 
-        #cube figure {
+        .cube figure {
             display: block;
             position: absolute;
             width: 196px;
@@ -74,51 +80,51 @@
             text-align: center;
         }
 
-        #cube.panels-backface-invisible figure {
+        .cube.panels-backface-invisible figure {
             -webkit-backface-visibility: hidden;
             -moz-backface-visibility: hidden;
             -o-backface-visibility: hidden;
             backface-visibility: hidden;
         }
 
-        #cube .front  { background: hsla(   0, 100%, 50%, 0.7 ); }
-        #cube .back   { background: hsla(  60, 100%, 50%, 0.7 ); }
-        #cube .right  { background: hsla( 120, 100%, 50%, 0.7 ); }
-        #cube .left   { background: hsla( 180, 100%, 50%, 0.7 ); }
-        #cube .top    { background: hsla( 240, 100%, 50%, 0.7 ); }
-        #cube .bottom { background: hsla( 300, 100%, 50%, 0.7 ); }
+        .cube .front  { background: hsla(   0, 100%, 50%, 0.7 ); }
+        .cube .back   { background: hsla(  60, 100%, 50%, 0.7 ); }
+        .cube .right  { background: hsla( 120, 100%, 50%, 0.7 ); }
+        .cube .left   { background: hsla( 180, 100%, 50%, 0.7 ); }
+        .cube .top    { background: hsla( 240, 100%, 50%, 0.7 ); }
+        .cube .bottom { background: hsla( 300, 100%, 50%, 0.7 ); }
 
-        #cube .front  {
+        .cube .front  {
             -webkit-transform: translateZ( 100px );
             -moz-transform: translateZ( 100px );
             -o-transform: translateZ( 100px );
             transform: translateZ( 100px );
         }
-        #cube .back {
+        .cube .back {
             -webkit-transform: rotateX( -180deg ) translateZ( 100px );
             -moz-transform: rotateX( -180deg ) translateZ( 100px );
             -o-transform: rotateX( -180deg ) translateZ( 100px );
             transform: rotateX( -180deg ) translateZ( 100px );
         }
-        #cube .right {
+        .cube .right {
             -webkit-transform: rotateY(   90deg ) translateZ( 100px );
             -moz-transform: rotateY(   90deg ) translateZ( 100px );
             -o-transform: rotateY(   90deg ) translateZ( 100px );
             transform: rotateY(   90deg ) translateZ( 100px );
         }
-        #cube .left {
+        .cube .left {
             -webkit-transform: rotateY(  -90deg ) translateZ( 100px );
             -moz-transform: rotateY(  -90deg ) translateZ( 100px );
             -o-transform: rotateY(  -90deg ) translateZ( 100px );
             transform: rotateY(  -90deg ) translateZ( 100px );
         }
-        #cube .top {
+        .cube .top {
             -webkit-transform: rotateX(   90deg ) translateZ( 100px );
             -moz-transform: rotateX(   90deg ) translateZ( 100px );
             -o-transform: rotateX(   90deg ) translateZ( 100px );
             transform: rotateX(   90deg ) translateZ( 100px );
         }
-        #cube .bottom {
+        .cube .bottom {
             -webkit-transform: rotateX(  -90deg ) translateZ( 100px );
             -moz-transform: rotateX(  -90deg ) translateZ( 100px );
             -o-transform: rotateX(  -90deg ) translateZ( 100px );
@@ -133,7 +139,17 @@
 <h1>Perspective 3</h1>
 
 <section class="container">
-    <div id="cube" class="spinning">
+    <div class="cube spinning _1">
+        <figure class="front">1</figure>
+        <figure class="back">2</figure>
+        <figure class="right">3</figure>
+        <figure class="left">4</figure>
+        <figure class="top">5</figure>
+        <figure class="bottom">6</figure>
+    </div>
+</section>
+<section class="container">
+    <div class="cube spinning _2">
         <figure class="front">1</figure>
         <figure class="back">2</figure>
         <figure class="right">3</figure>
