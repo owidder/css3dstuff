@@ -39,12 +39,14 @@
             transform: translateZ( -50px );
         }
 
+/*
         .cube.spinning._1 {
             animation: spinCube       8s infinite ease-in-out;
         }
         .cube.spinning._2 {
             animation: spinCube       2s infinite ease-in-out;
         }
+*/
 
         @keyframes spinCube {
             0% { transform: translateZ( -50px ) rotateX(   0deg ) rotateY(   0deg ); }
@@ -65,8 +67,8 @@
         }
 
         figure.top, figure.bottom {
-            bottom: 50px;
-            height: 100px;
+            bottom: 25%;
+            height: 50%;
             font-size: 60px;
             line-height: 98px;
         }
@@ -116,6 +118,7 @@
         <figure class="bottom">6</figure>
     </div>
 </section>
+<!--
 <section class="container _2">
     <div class="cube spinning _2">
         <figure class="front">1</figure>
@@ -126,6 +129,7 @@
         <figure class="bottom">6</figure>
     </div>
 </section>
+-->
 
 
 <script src="js/utils.js"></script>

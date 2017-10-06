@@ -1,0 +1,96 @@
+body {
+    perspective: 1200px;
+    /* perspective-origin: 0px 0px; */
+}
+
+#area {
+    top: 200px;
+    left: 400px;
+}
+
+.container {
+    /*
+    width: 100px;
+    height: 200px;
+    */
+    position: absolute;
+    /*
+    top: 200px;
+    left: 400px;
+    */
+    margin: 0;
+}
+
+.cube {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transform: translateZ( -50px );
+}
+
+.cube.spinning {
+    animation: spinCube       8s infinite ease-in-out;
+}
+
+@keyframes spinCube {
+    0% { transform: translateZ( -50px ) rotateX(   0deg ) rotateY(   0deg ); }
+    100% { transform: translateZ( -50px ) rotateX( 360deg ) rotateY( 360deg ); }
+}
+
+.cube figure {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    line-height: 196px;
+    font-size: 120px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+figure.top, figure.bottom {
+    /*
+    bottom: 25%;
+    height: 50%;
+    */
+    font-size: 60px;
+    line-height: 98px;
+}
+
+.cube.panels-backface-invisible figure {
+    backface-visibility: hidden;
+}
+
+.cube .front  { background: hsla(   0, 100%, 50%, 0.7 ); }
+.cube .back   { background: hsla(  60, 100%, 50%, 0.7 ); }
+.cube .right  { background: hsla( 120, 100%, 50%, 0.7 ); }
+.cube .left   { background: hsla( 180, 100%, 50%, 0.7 ); }
+.cube .top    { background: hsla( 240, 100%, 50%, 0.7 ); }
+.cube .bottom { background: hsla( 300, 100%, 50%, 0.7 ); }
+
+/*
+.cube .front  {
+    transform: translateZ( 50px );
+}
+.cube .back {
+    transform: rotateX( -180deg ) translateZ( 50px );
+}
+.cube .right {
+    transform: rotateY(   90deg ) translateZ( 50px );
+}
+.cube .left {
+    transform: rotateY(  -90deg ) translateZ( 50px );
+}
+.cube .top {
+    transform: rotateX(   90deg ) translateZ( 100px );
+}
+.cube .bottom {
+    transform: rotateX(  -90deg ) translateZ( 100px );
+}
+*/
+
+figure {
+    margin: 0;
+}
