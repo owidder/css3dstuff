@@ -40,23 +40,23 @@ class Bar3d {
 
     createBar() {
         const topBottomPercentageHeight = this.initialWidth / this.initialHeight * 100;
-        const topBottomPercentageBottom = topBottomPercentageHeight / 2;
+        const topBottomPercentageBottom = topBottomPercentageHeight * 2;
 
-        d3.selectAll("figure.top, figure.bottom")
+        this.area.selectAll("figure.top, figure.bottom")
             .style("height", topBottomPercentageHeight + "%")
             .style("bottom", topBottomPercentageBottom + "%")
 
-        d3.selectAll(".cube .front")
+        this.area.selectAll(".cube .front")
             .style("transform", "translateZ(" + (this.initialWidth/2) + "px )")
-        d3.selectAll(".cube .back")
+        this.area.selectAll(".cube .back")
             .style("transform", "rotateX(-180deg) translateZ(" + (this.initialWidth/2) + "px)")
-        d3.selectAll(".cube .right")
+        this.area.selectAll(".cube .right")
             .style("transform", "rotateY(90deg) translateZ(" + (this.initialWidth/2) + "px)")
-        d3.selectAll(".cube .left")
+        this.area.selectAll(".cube .left")
             .style("transform", "rotateY(-90deg) translateZ(" + (this.initialWidth/2) + "px)")
-        d3.selectAll(".cube .top")
+        this.area.selectAll(".cube .top")
             .style("transform", "rotateX(90deg) translateZ(" + (this.initialHeight/2) + "px)")
-        d3.selectAll(".cube .top")
+        this.area.selectAll(".cube .bottom")
             .style("transform", "rotateX(-90deg) translateZ(" + (this.initialHeight/2) + "px)")
     }
 
