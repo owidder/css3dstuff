@@ -1,6 +1,8 @@
 import * as d3 from 'd3';
 import * as _ from 'lodash';
 
+const START_Y_ROTATION = 10;
+
 const drawBars = (rootSelector, data, id) => {
 
     const root = d3.select(rootSelector);
@@ -24,7 +26,7 @@ const drawBars = (rootSelector, data, id) => {
         .attr("class", d => "cube _" + d.id)
         .style("transform", rotation(10))
         .on("click", d => {
-            d.rotationY += 90;
+            d.rotationY = isNaN(d.rotationY) ? START_Y_ROTATION + 90 : d.rotationY+90;
             drawBars(rootSelector, data, d.id);
         })
 
@@ -36,45 +38,48 @@ const drawBars = (rootSelector, data, id) => {
     }
 
     const topBottomPercentageHeight = d => (d.width / d.height * 100) + "%";
-    const topBottomPercentageBottom = d => (d.width / d.height * 50) + "%";
+    const topBottomPercentageBottom = d => ((.5 - (d.width / d.height)/2) *100) + "%";
 
     enterDiv
         .append("figure")
-        .attr("class", "front bar")
+        .attr("class", "front bar side")
         .style("height", "100%")
         .text("A")
     enterDiv
         .append("figure")
-        .attr("class", "back bar")
+        .attr("class", "back bar side")
         .style("height", "100%")
         .text("B")
     enterDiv
         .append("figure")
-        .attr("class", "right bar")
+        .attr("class", "right bar side")
         .style("height", "100%")
         .text("C")
     enterDiv
         .append("figure")
-        .attr("class", "left bar")
+        .attr("class", "left bar side")
         .style("height", "100%")
         .text("D")
     enterDiv
         .append("figure")
-        .attr("class", "top bar")
+        .attr("class", "top bar topBottom")
         .text("E")
     enterDiv
         .append("figure")
-        .attr("class", "bottom bar")
+        .attr("class", "bottom bar topBottom")
         .text("F")
 
-    root.selectAll("figure.bar")
+    root.selectAll("figure.bar.side")
         .style("font-size", d => (d.height/5) + "px")
+
+    root.selectAll("figure.bar.topBottom")
+        .style("font-size", d => (d.width/2) + "px")
 
     root.selectAll("figure.front")
         .style("transform", d => "translateZ(" + (d.width/2) + "px)")
 
     root.selectAll("figure.back")
-        .style("transform", d => "rotateX(-180deg) translateZ(" + (d.width/2) + "px)")
+        .style("transform", d => "rotateY(-180deg) translateZ(" + (d.width/2) + "px)")
 
     root.selectAll("figure.right")
         .style("transform", d => "rotateY(90deg) translateZ(" + (d.width/2) + "px)")
