@@ -65,7 +65,7 @@ const drawBars = (rootSelector, data) => {
         .style("bottom", topBottomPercentageBottom)
 
     root.selectAll("figure.bottom")
-        .style("transform", d =>  "rotateX(-90deg) translateZ(" + (this.initialHeight/2) + "px)")
+        .style("transform", d =>  "rotateX(-90deg) translateZ(" + (d.height/2) + "px)")
         .style("height", topBottomPercentageHeight)
         .style("bottom", topBottomPercentageBottom)
 

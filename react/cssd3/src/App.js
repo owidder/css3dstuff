@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import Bar3d from './Bar3d';
+import drawBars from './drawBars';
 
 class App extends Component {
     constructor(props) {
@@ -12,7 +12,15 @@ class App extends Component {
     }
 
     componentDidMount() {
-        new Bar3d("#area", 50, 250);
+        const data = [{
+            id: 0,
+            x: 200,
+            y: 100,
+            height: 400,
+            width: 200
+        }];
+
+        drawBars("div#area", data)
     }
     render() {
         const style = {
