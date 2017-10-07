@@ -34,8 +34,8 @@ body {
 }
 
 @keyframes spinCube {
-    0% { transform: rotateY(   0deg ); }
-    100% { transform: rotateY( 360deg ); }
+    0% { transform: rotateX(-10deg) rotateY(0deg); }
+    100% { transform: rotateX(-10deg) rotateY(360deg); }
 }
 
 .cube figure {
@@ -44,7 +44,9 @@ body {
     width: 100%;
     height: 100%;
     line-height: 196px;
+    /*
     font-size: 120px;
+    */
     font-weight: bold;
     color: white;
     text-align: center;
