@@ -70,7 +70,7 @@ const drawBars = (rootSelector, data, id) => {
         .text("F")
 
     root.selectAll("figure.bar.side")
-        .style("font-size", d => (d.height/5) + "px")
+        .style("font-size", d => (Math.min(d.width, d.height)/2) + "px")
 
     root.selectAll("figure.bar.topBottom")
         .style("font-size", d => (d.width/2) + "px")
