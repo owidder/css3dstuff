@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import * as _ from 'lodash';
 
 import './App.css';
-import drawBars from './drawBars';
+import drawSvgBars from './drawSvgBars';
+import svg3dTest from './svg3dTest';
 
 const NO_OF_ROWS = 20;
 const ROW_SPACE = 50;
@@ -12,9 +13,8 @@ const WIDTH = 30;
 const Y = 400;
 
 class App extends Component {
-
     componentDidMount() {
-        const data = _.range(200).map(i => {
+        const data = _.range(1).map(i => {
             const ix = i % NO_OF_ROWS;
             const iz = Math.floor(i / NO_OF_ROWS);
             const height = 50 + Math.random() * 300;
@@ -28,12 +28,13 @@ class App extends Component {
             }
         });
 
-        drawBars("div#area", data)
+        drawSvgBars("svg#area", data)
+
     }
 
     render() {
         return (
-            <div id="area"></div>
+            <svg id="area" width={window.innerWidth} height={window.innerHeight}></svg>
         );
     }
 }

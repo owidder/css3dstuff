@@ -25,7 +25,7 @@ const drawSvgBars = (rootSelector, data, id) => {
         .style("transform", rotation(10))
         .on("click", d => {
             d.rotationY = isNaN(d.rotationY) ? START_Y_ROTATION + 90 : d.rotationY+90;
-            drawBars(rootSelector, data, d.id);
+            drawSvgBars(rootSelector, data, d.id);
         })
 
     if(!_.isEmpty(id)) {
@@ -36,7 +36,7 @@ const drawSvgBars = (rootSelector, data, id) => {
     }
 
     const createCubePart = (partName, text) => {
-        const isTopBottom = partName == "top" || partName == "bottom";
+        const isTopBottom = partName === "top" || partName === "bottom";
         const g = enterCube.append("g")
             .attr("transform", d => {
                 if(isTopBottom) {
