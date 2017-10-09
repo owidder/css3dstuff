@@ -3,7 +3,6 @@ import * as _ from 'lodash';
 
 import './App.css';
 import drawSvgBars from './drawSvgBars';
-import svg3dTest from './svg3dTest';
 
 const NO_OF_ROWS = 20;
 const ROW_SPACE = 50;
@@ -20,7 +19,7 @@ class App extends Component {
             const height = 50 + Math.random() * 300;
             return {
                 id: String(i+1),
-                x: ix * (WIDTH + ROW_SPACE),
+                x: ix * (WIDTH + ROW_SPACE) + 500,
                 y: Y - height,
                 z: iz * (WIDTH + LINE_SPACE),
                 height: height,
@@ -28,13 +27,13 @@ class App extends Component {
             }
         });
 
-        drawSvgBars("svg#area", data)
+        drawSvgBars("div#area", data)
 
     }
 
     render() {
         return (
-            <svg id="area" width={window.innerWidth} height={window.innerHeight}></svg>
+            <div id="area"></div>
         );
     }
 }

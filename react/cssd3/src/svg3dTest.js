@@ -6,14 +6,15 @@ const HEIGHT = window.innerHeight;
 
 const svg3dTest = (rootSelector) => {
 
-    const color = d3.scaleOrdinal(d3.schemeCategory20c);
+    const color = d3.scaleOrdinal(d3.schemeCategory20);
 
     const root = d3.select(rootSelector);
 
     root.selectAll("svg.test")
-        .data(_.range(100).map(i => {id: "_" + i}))
+        .data(_.range(1).map(i => {return {id: "_" + i}}))
         .enter()
         .append("svg")
+        .attr("class", "test spinning")
         .attr("height", d => {
             d.height = Math.random() * 200;
             return d.height*2;
@@ -22,13 +23,6 @@ const svg3dTest = (rootSelector) => {
             d.width = Math.random() * 200;
             return d.width*2;
         })
-        .append("rect")
-        .attr("height", d => d.height)
-        .attr("widtgh", d => d.width)
-        .attr("x", d => d.width/2)
-        .attr("y", d => d.height/2)
-        .attr("fill", (d, i) => color(i))
-        .style("opacity", d => Math.random())
         .style("transform", d => {
             d.x = Math.random() * WIDTH;
             d.y = Math.random() * HEIGHT;
@@ -43,6 +37,15 @@ const svg3dTest = (rootSelector) => {
                 "rotateY(" + d.rotY + "deg) " +
                 "rotateZ(" + d.rotZ + "deg)"
         })
+        .append("rect")
+        .attr("height", d => d.height)
+        .attr("width", d => d.width)
+/*
+        .attr("x", d => d.width/2)
+        .attr("y", d => d.height/2)
+*/
+        .attr("fill", (d, i) => color(i))
+        .style("opacity", d => Math.random())
 
 }
 
