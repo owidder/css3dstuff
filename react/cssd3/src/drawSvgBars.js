@@ -89,6 +89,14 @@ const drawSvgBars = (rootSelector, data, id) => {
     createCubePart("top", "E");
     createCubePart("bottom", "F");
 
+    const addTransform = (domElement, transformToAdd) => {
+        const currentTransform = domElement.attr("transform");
+        if(_.isEmpty(currentTransform)) {
+            return transformToAdd;
+        }
+        return currentTransform + " " + transformToAdd;
+    }
+
     root.selectAll("svg.front")
         .style("transform", d => "translateZ(" + (d.width/2) + "px)")
 
@@ -102,10 +110,10 @@ const drawSvgBars = (rootSelector, data, id) => {
         .style("transform", d => "rotateY(-90deg) translateZ(" + (d.width/2) + "px)")
 
     root.selectAll("svg.top")
-        .style("transform", d => "rotateX(90deg) translateZ(" + (d.height/2) + "px)")
+        .style("transform", d => "translateY(" + (d.height/2 - d.width/2) + "px) rotateX(90deg) translateZ(" + (d.height/2) + "px)")
 
     root.selectAll("svg.bottom")
-        .style("transform", d =>  "rotateX(-90deg) translateZ(" + (d.height/2) + "px)")
+        .style("transform", d =>  "translateY(" + (d.height/2 - d.width/2) + "px) rotateX(-90deg) translateZ(" + (d.height/2) + "px)")
 
 };
 
