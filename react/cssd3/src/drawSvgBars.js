@@ -1,9 +1,10 @@
 import * as d3 from 'd3';
 import * as _ from 'lodash';
+import {load} from 'opentype.js';
 
 const START_Y_ROTATION = 10;
 
-const drawSvgBars = (rootSelector, data, id) => {
+const _drawSvgBars = (rootSelector, data, id, font) => {
 
     const color = d3.scaleOrdinal(d3.schemeCategory20b);
 
@@ -89,14 +90,6 @@ const drawSvgBars = (rootSelector, data, id) => {
     createCubePart("top", "E");
     createCubePart("bottom", "F");
 
-    const addTransform = (domElement, transformToAdd) => {
-        const currentTransform = domElement.attr("transform");
-        if(_.isEmpty(currentTransform)) {
-            return transformToAdd;
-        }
-        return currentTransform + " " + transformToAdd;
-    }
-
     root.selectAll("svg.front")
         .style("transform", d => "translateZ(" + (d.width/2) + "px)")
 
@@ -116,5 +109,11 @@ const drawSvgBars = (rootSelector, data, id) => {
         .style("transform", d =>  "translateY(" + (d.height/2 - d.width/2) + "px) rotateX(-90deg) translateZ(" + (d.height/2) + "px)")
 
 };
+
+const drawSvgBars = (rootSelector, data, id) => {
+    load('fonts/Roboto-Black.ttf', (err, font) => {
+        _drawSvgBars(rootSelector, data, id, font);
+    })
+}
 
 export default drawSvgBars;

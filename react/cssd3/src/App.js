@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 
 import './App.css';
 import drawSvgBars from './drawSvgBars';
+import textToPath from './textToPath';
 
 const NO_OF_ROWS = 20;
 const ROW_SPACE = 50;
@@ -28,7 +29,7 @@ class App extends Component {
         });
 
         drawSvgBars("div#area", data)
-
+        textToPath("123");
     }
 
     render() {
