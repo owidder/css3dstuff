@@ -3,33 +3,53 @@ import * as _ from 'lodash';
 
 import './App.css';
 import drawSvgBars from './drawSvgBars';
-import textToPath from './textToPath';
 
-const NO_OF_ROWS = 20;
-const ROW_SPACE = 50;
-const LINE_SPACE = 50;
-const WIDTH = 30;
+const WIDTH = window.innerWidth;
+const HEIGHT = window.innerHeight;
+const SIDE_LENGTH = Math.min(WIDTH, HEIGHT) / 4;
 
-const Y = 400;
+const UPPER = HEIGHT / 4 - SIDE_LENGTH / 2;
+const LOWER = HEIGHT * (3 / 4) - SIDE_LENGTH / 2;
+const LEFT = WIDTH / 4 - SIDE_LENGTH / 2;
+const RIGHT = WIDTH * (3 / 4) - SIDE_LENGTH / 2;
 
 class App extends Component {
     componentDidMount() {
-        const data = _.range(1).map(i => {
-            const ix = i % NO_OF_ROWS;
-            const iz = Math.floor(i / NO_OF_ROWS);
-            const height = 50 + Math.random() * 300;
-            return {
-                id: String(i+1),
-                x: ix * (WIDTH + ROW_SPACE) + 500,
-                y: Y - height,
-                z: iz * (WIDTH + LINE_SPACE),
-                height: height,
-                width: WIDTH
-            }
-        });
-
+        const data = [
+            {
+                id: "upperleft",
+                x: LEFT,
+                y: UPPER,
+                z: 0,
+                width: SIDE_LENGTH,
+                height: SIDE_LENGTH
+            },
+            {
+                id: "upperright",
+                x: RIGHT,
+                y: UPPER,
+                z: 0,
+                width: SIDE_LENGTH,
+                height: SIDE_LENGTH
+            },
+            {
+                id: "lowerright",
+                x: RIGHT,
+                y: LOWER,
+                z: 0,
+                width: SIDE_LENGTH,
+                height: SIDE_LENGTH
+            },
+            {
+                id: "lowerleft",
+                x: LEFT,
+                y: LOWER,
+                z: 0,
+                width: SIDE_LENGTH,
+                height: SIDE_LENGTH
+            },
+        ]
         drawSvgBars("div#area", data)
-        textToPath("123");
     }
 
     render() {

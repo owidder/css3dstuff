@@ -51,7 +51,7 @@ const _drawSvgBars = (rootSelector, data, id, font) => {
         const isTopBottom = partName === "top" || partName === "bottom";
 
         const svg = enterCube.append("svg")
-            .attr("class", partName)
+            .attr("class", "part " + partName)
             .attr("height", height)
             .attr("width", width)
             .style("position", "absolute")
@@ -66,21 +66,11 @@ const _drawSvgBars = (rootSelector, data, id, font) => {
             .attr("width", width)
             .attr("fill", d => color(partName))
             .style("opacity", .5)
-        svg.append("text")
-            .style("font-size", d => {
-                if(isTopBottom) {
-                    return (d.width/2) + "px";
-                }
-                return (Math.min(d.width, d.height)/3*2) + "px";
-            })
-            .attr("x", d => {
-                return width(d)/2;
-            })
-            .attr("y", d => {
-                return height(d)/2;
-            })
+        svg.append("g")
+            .attr("transform", d => "translate(" + (width(d)/2) + "," + (height(d)/2) + ")")
+            .append("path")
             .attr("fill", "white")
-            .text(text)
+            .attr("d", font.getPath(text, 0, 0, 100).toPathData())
     };
 
     createCubePart("front", "A");

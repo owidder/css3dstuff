@@ -66,6 +66,10 @@ figure.top, figure.bottom {
     backface-visibility: hidden;
 }
 
+svg.part  {
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
 .cube .front  { background: hsla(   0, 100%, 50%, 0.7 ); }
 .cube .back   { background: hsla(  60, 100%, 50%, 0.7 ); }
 .cube .right  { background: hsla( 120, 100%, 50%, 0.7 ); }
