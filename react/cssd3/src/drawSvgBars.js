@@ -2,6 +2,8 @@ import * as d3 from 'd3';
 import * as _ from 'lodash';
 import {load} from 'opentype.js';
 
+import {lineDraw} from './textAnimation';
+
 const START_Y_ROTATION = 10;
 
 const _drawSvgBars = (rootSelector, data, id, font) => {
@@ -69,8 +71,14 @@ const _drawSvgBars = (rootSelector, data, id, font) => {
         svg.append("g")
             .attr("transform", d => "translate(" + (width(d)/2) + "," + (height(d)/2) + ")")
             .append("path")
-            .attr("fill", "white")
+            .attr("class", d => d.id + " " + partName)
+            .attr("stroke", "white")
+            .attr("stroke-width", 3)
+            .attr("fill", "none")
             .attr("d", font.getPath(text, 0, 0, 100).toPathData())
+            .each(d => {
+                lineDraw("." + partName + "." + d.id);
+            })
     };
 
     createCubePart("front", "A");
