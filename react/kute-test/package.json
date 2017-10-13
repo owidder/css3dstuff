@@ -1,12 +1,9 @@
 {
-  "name": "cssd3",
+  "name": "kute-test",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "animejs": "^2.2.0",
-    "d3": "^4.11.0",
     "kute.js": "^1.6.5",
-    "lodash": "^4.17.4",
     "opentype.js": "^0.7.3",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",

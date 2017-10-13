@@ -1,0 +1,15 @@
+
+.App path {
+    fill: none;
+    stroke: black;
+}
+
+svg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+small.text {
+    z-index: 0;
+}
