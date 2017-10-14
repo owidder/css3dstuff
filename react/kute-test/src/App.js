@@ -39,7 +39,7 @@ class App extends Component {
 
     _loadText() {
         const that = this;
-        fetch("../sp.txt", {method: 'GET'}).then((response) => {
+        fetch("sp.txt", {method: 'GET'}).then((response) => {
             return response.text();
         }).then((text) => {
             this.setState({text});
