@@ -2,11 +2,13 @@ import * as d3 from 'd3';
 import * as _ from 'lodash';
 import {load} from 'opentype.js';
 
-import {lineDraw} from './textAnimation';
+import DrawText from './DrawText';
 
 const START_Y_ROTATION = 10;
 
-const _drawSvgBars = (rootSelector, data, id, font) => {
+const START_PATH = "M 10, 10 m -7.5, 0 a 7.5,7.5 0 1,0 15,0 a 7.5,7.5 0 1,0 -15,0";
+
+const drawSvgBars = (rootSelector, data, id) => {
 
     const color = d3.scaleOrdinal(d3.schemeCategory20b);
 
@@ -42,6 +44,8 @@ const _drawSvgBars = (rootSelector, data, id, font) => {
     }
 
     const createCubePart = (partName, text) => {
+        const isTopBottom = partName === "top" || partName === "bottom";
+
         const height = d => {
             if(isTopBottom) {
                 return d.width;
@@ -49,8 +53,6 @@ const _drawSvgBars = (rootSelector, data, id, font) => {
             return d.height;
         }
         const width = d => d.width;
-
-        const isTopBottom = partName === "top" || partName === "bottom";
 
         const svg = enterCube.append("svg")
             .attr("class", "part " + partName)
@@ -63,30 +65,43 @@ const _drawSvgBars = (rootSelector, data, id, font) => {
                     return "translateY(" + y + "px)";
                 }
             })
-        svg.append("rect")
-            .attr("height", height)
-            .attr("width", width)
-            .attr("fill", d => color(partName))
-            .style("opacity", .5)
-        svg.append("g")
+
+        const sideG = svg.append("g")
             .attr("transform", d => "translate(" + (width(d)/2) + "," + (height(d)/2) + ")")
-            .append("path")
-            .attr("class", d => d.id + " " + partName)
+
+        const fromId = d => d.id + "-" + partName + "-from";
+        const toId = d => d.id + "-" + partName + "-to";
+
+        sideG.append("path")
+            .attr("class", d => d.id + " " + partName + " from")
+            .attr("id", fromId)
             .attr("stroke", "white")
             .attr("stroke-width", 3)
             .attr("fill", "none")
-            .attr("d", font.getPath(text, 0, 0, 100).toPathData())
-            .each(d => {
-                lineDraw("." + partName + "." + d.id);
-            })
+            .attr("d", START_PATH)
+
+        sideG.append("path")
+            .attr("class", d => d.id + " " + partName + " to")
+            .attr("id", toId)
+            .attr("stroke", "white")
+            .attr("stroke-width", 3)
+            .attr("fill", "none")
+            .attr("d", START_PATH)
+            .style("visibility", "hidden")
+
+        sideG.each(d => {
+            console.log(fromId(d));
+            console.log(toId(d));
+            (new DrawText(svg, "#" + fromId(d), "#" + toId(d), text)).start();
+        })
     };
 
-    createCubePart("front", "A");
-    createCubePart("back", "B");
-    createCubePart("right", "C");
-    createCubePart("left", "D");
-    createCubePart("top", "E");
-    createCubePart("bottom", "F");
+    createCubePart("front", "ABC");
+    createCubePart("back", "DEF");
+    createCubePart("right", "GHI");
+    createCubePart("left", "JKL");
+    createCubePart("top", "MNO");
+    createCubePart("bottom", "PQR");
 
     root.selectAll("svg.front")
         .style("transform", d => "translateZ(" + (d.width/2) + "px)")
@@ -107,11 +122,5 @@ const _drawSvgBars = (rootSelector, data, id, font) => {
         .style("transform", d =>  "translateY(" + (d.height/2 - d.width/2) + "px) rotateX(-90deg) translateZ(" + (d.height/2) + "px)")
 
 };
-
-const drawSvgBars = (rootSelector, data, id) => {
-    load('fonts/Roboto-Black.ttf', (err, font) => {
-        _drawSvgBars(rootSelector, data, id, font);
-    })
-}
 
 export default drawSvgBars;

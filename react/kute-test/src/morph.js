@@ -1,10 +1,8 @@
-import loadFont from './loadFont';
-
 const KUTE = require('kute.js');
 require("kute.js/kute-svg");
 
-const morph = (font, text) => {
-    const tween = KUTE.to('#from', { path: '#to'}, {duration: 100});
+const morph = (selectorFrom, selectorTo) => {
+    const tween = KUTE.to(selectorFrom, { path: selectorTo}, {duration: 100});
     tween.start();
 }
 
