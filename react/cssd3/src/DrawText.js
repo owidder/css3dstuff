@@ -62,7 +62,6 @@ class DrawText {
     async start() {
         const font = await fonts.getFont(this.fontPath);
         const chars = this._chars();
-        const that = this;
         this._drawNextChar(chars, font);
     }
 }

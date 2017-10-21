@@ -1,6 +1,5 @@
 import * as d3 from 'd3';
 import * as _ from 'lodash';
-import {load} from 'opentype.js';
 
 import DrawText from './DrawText';
 import getText from './getText';
@@ -11,8 +10,6 @@ const START_Y_ROTATION = 10;
 const START_PATH = "M 10, 10 m -7.5, 0 a 7.5,7.5 0 1,0 15,0 a 7.5,7.5 0 1,0 -15,0";
 
 const drawSvgBars = (rootSelector, data, id) => {
-
-    const color = d3.scaleOrdinal(d3.schemeCategory20b);
 
     const root = d3.select(rootSelector);
 
@@ -33,9 +30,10 @@ const drawSvgBars = (rootSelector, data, id) => {
         .attr("class", d => "cube _" + d.id)
         .style("transform-origin", d => (d.width/2) + "px")
         .style("transform", rotation(10))
-        .on("click", d => {
+        .on("click", function (d) {
             d.rotationY = isNaN(d.rotationY) ? START_Y_ROTATION + 90 : d.rotationY+90;
             drawSvgBars(rootSelector, data, d.id);
+
         })
 
     if(!_.isEmpty(id)) {
@@ -45,7 +43,7 @@ const drawSvgBars = (rootSelector, data, id) => {
             .styleTween("transform", d => d3.interpolate(rotation(d.rotationY-90), rotation(d.rotationY)))
     }
 
-    const createCubePart = (partName, text) => {
+    const createCubePart = (partName) => {
         const isTopBottom = partName === "top" || partName === "bottom";
 
         const height = d => {
@@ -66,6 +64,9 @@ const drawSvgBars = (rootSelector, data, id) => {
                     const y = d.height/2 - d.width/2;
                     return "translateY(" + y + "px)";
                 }
+            })
+            .on("click", () => {
+                console.log(partName);
             })
 
         const sideG = svg.append("g")
