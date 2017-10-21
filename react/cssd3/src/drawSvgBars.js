@@ -3,6 +3,8 @@ import * as _ from 'lodash';
 import {load} from 'opentype.js';
 
 import DrawText from './DrawText';
+import getText from './getText';
+import {parts, TOP, BOTTOM, RIGHT, LEFT, BACK, FRONT} from './parts';
 
 const START_Y_ROTATION = 10;
 
@@ -90,37 +92,30 @@ const drawSvgBars = (rootSelector, data, id) => {
             .style("visibility", "hidden")
 
         sideG.each(d => {
-            console.log(fromId(d));
-            console.log(toId(d));
+            const text = getText(d.id, partName);
             (new DrawText(svg, "#" + fromId(d), "#" + toId(d), text)).start();
         })
     };
 
-    createCubePart("front", "ABC");
-    createCubePart("back", "DEF");
-    createCubePart("right", "GHI");
-    createCubePart("left", "JKL");
-    createCubePart("top", "MNO");
-    createCubePart("bottom", "PQR");
+    parts.forEach(part => createCubePart(part));
 
-    root.selectAll("svg.front")
+    root.selectAll("svg." + FRONT)
         .style("transform", d => "translateZ(" + (d.width/2) + "px)")
 
-    root.selectAll("svg.back")
+    root.selectAll("svg." + BACK)
         .style("transform", d => "rotateY(-180deg) translateZ(" + (d.width/2) + "px)")
 
-    root.selectAll("svg.right")
+    root.selectAll("svg." + RIGHT)
         .style("transform", d => "rotateY(90deg) translateZ(" + (d.width/2) + "px)")
 
-    root.selectAll("svg.left")
+    root.selectAll("svg." + LEFT)
         .style("transform", d => "rotateY(-90deg) translateZ(" + (d.width/2) + "px)")
 
-    root.selectAll("svg.top")
+    root.selectAll("svg." + TOP)
         .style("transform", d => "translateY(" + (d.height/2 - d.width/2) + "px) rotateX(90deg) translateZ(" + (d.height/2) + "px)")
 
-    root.selectAll("svg.bottom")
+    root.selectAll("svg." + BOTTOM)
         .style("transform", d =>  "translateY(" + (d.height/2 - d.width/2) + "px) rotateX(-90deg) translateZ(" + (d.height/2) + "px)")
-
 };
 
 export default drawSvgBars;

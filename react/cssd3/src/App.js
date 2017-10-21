@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 
 import './App.css';
 import drawSvgBars from './drawSvgBars';
+import {LOWER_LEFT, LOWER_RIGHT, UPPER_LEFT, UPPER_RIGHT} from './places';
 
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
@@ -17,7 +18,7 @@ class App extends Component {
     componentDidMount() {
         const data = [
             {
-                id: "upperleft",
+                id: UPPER_LEFT,
                 x: LEFT,
                 y: UPPER,
                 z: 0,
@@ -25,7 +26,7 @@ class App extends Component {
                 height: SIDE_LENGTH
             },
             {
-                id: "upperright",
+                id: UPPER_RIGHT,
                 x: RIGHT,
                 y: UPPER,
                 z: 0,
@@ -33,7 +34,7 @@ class App extends Component {
                 height: SIDE_LENGTH
             },
             {
-                id: "lowerright",
+                id: LOWER_RIGHT,
                 x: RIGHT,
                 y: LOWER,
                 z: 0,
@@ -41,7 +42,7 @@ class App extends Component {
                 height: SIDE_LENGTH
             },
             {
-                id: "lowerleft",
+                id: LOWER_LEFT,
                 x: LEFT,
                 y: LOWER,
                 z: 0,

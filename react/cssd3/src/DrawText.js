@@ -53,15 +53,17 @@ class DrawText {
         const charD = this._getPath(chars.next().value, font);
         this._setToD(charD);
         this._morph();
+        const that = this;
+        setTimeout(() => {
+            that._drawNextChar(chars, font);
+        }, Math.random(1500) + 500)
     }
 
     async start() {
         const font = await fonts.getFont(this.fontPath);
         const chars = this._chars();
         const that = this;
-        setInterval(() => {
-            that._drawNextChar(chars, font);
-        }, 1000);
+        this._drawNextChar(chars, font);
     }
 }
 
