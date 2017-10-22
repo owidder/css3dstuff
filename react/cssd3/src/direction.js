@@ -1,37 +1,37 @@
-export const DIRECTION_FRONT = "front";
-export const DIRECTION_LEFT = "left";
-export const DIRECTION_RIGHT = "right";
-export const DIRECTION_BACK = "back";
-export const DIRECTION_TOP = "top";
-export const DIRECTION_BOTTOM = "bottom";
+export const FRONT = "front";
+export const LEFT = "left";
+export const RIGHT = "right";
+export const BACK = "back";
+export const TOP = "top";
+export const BOTTOM = "bottom";
 
 export const AXIS_X = "ax";
 export const AXIS_Y = "ay";
 
 const rules = {
-    [DIRECTION_FRONT]: {
-        [AXIS_X]: DIRECTION_BOTTOM,
-        [AXIS_Y]: DIRECTION_RIGHT
+    [FRONT]: {
+        [AXIS_X]: BOTTOM,
+        [AXIS_Y]: RIGHT
     },
-    [DIRECTION_LEFT]: {
-        [AXIS_X]: DIRECTION_LEFT,
-        [AXIS_Y]: DIRECTION_FRONT
+    [LEFT]: {
+        [AXIS_X]: LEFT,
+        [AXIS_Y]: FRONT
     },
-    [DIRECTION_RIGHT]: {
-        [AXIS_X]: DIRECTION_RIGHT,
-        [AXIS_Y]: DIRECTION_BACK
+    [RIGHT]: {
+        [AXIS_X]: RIGHT,
+        [AXIS_Y]: BACK
     },
-    [DIRECTION_BACK]: {
-        [AXIS_X]: DIRECTION_TOP,
-        [AXIS_Y]: DIRECTION_LEFT
+    [BACK]: {
+        [AXIS_X]: TOP,
+        [AXIS_Y]: LEFT
     },
-    [DIRECTION_TOP]: {
-        [AXIS_X]: DIRECTION_FRONT,
-        [AXIS_Y]: DIRECTION_TOP
+    [TOP]: {
+        [AXIS_X]: FRONT,
+        [AXIS_Y]: TOP
     },
-    [DIRECTION_BOTTOM]: {
-        [AXIS_X]: DIRECTION_BACK,
-        [AXIS_Y]: DIRECTION_BOTTOM
+    [BOTTOM]: {
+        [AXIS_X]: BACK,
+        [AXIS_Y]: BOTTOM
     },
 }
 
