@@ -17,3 +17,10 @@ const mapDispatchToProps = dispatch => {
         }
     }
 }
+
+const ClickRectsContainer = connect({
+    mapStateToProps,
+    mapDispatchToProps
+})(ClickRects);
+
+export default ClickRectsContainer;
