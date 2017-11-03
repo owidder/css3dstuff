@@ -18,9 +18,9 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-const ClickRectsContainer = connect({
+const ClickRectsContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-})(ClickRects);
+)(ClickRects);
 
 export default ClickRectsContainer;

@@ -8,7 +8,7 @@ import clickApp from './reducers';
 import './index.css';
 import App from './App';
 
-let store = createStore(clickApp);
+let store = createStore(clickApp, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 render(
     <Provider store={store}>

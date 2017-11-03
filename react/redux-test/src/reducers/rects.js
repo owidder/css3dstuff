@@ -13,5 +13,8 @@ export const rects = (state = [], action) => {
         case ADD_RECT: {
             return [...state, {...action.rect, clicks: 0}]
         }
+
+        default:
+            return state;
     }
 }

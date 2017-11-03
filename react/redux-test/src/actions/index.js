@@ -1,9 +1,5 @@
-export const SMALL = 'small';
-export const MIDDLE = 'middle';
-export const LARGE = 'large';
-
 export const DO_CLICK = 'DO_CLICK';
-export const ADD_RECT = 'CREATE_RECT';
+export const ADD_CIRCLE = 'ADD_CIRCLE';
 
 const ids = (function* () {
     let ctr = 0;
@@ -12,11 +8,10 @@ const ids = (function* () {
     }
 })();
 
-export const addRect = (props) => {
+export const addCircle = (props) => {
     return {
-        type: ADD_RECT,
-        id: ids.next(),
-        rect: props
+        type: ADD_CIRCLE,
+        rect: {...props, id: ids.next().value}
     }
 }
 
