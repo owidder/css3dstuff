@@ -1,5 +1,5 @@
 export const DO_CLICK = 'DO_CLICK';
-export const ADD_CIRCLE = 'ADD_CIRCLE';
+export const ADD_RECT = 'ADD_RECT';
 
 const ids = (function* () {
     let ctr = 0;
@@ -8,9 +8,9 @@ const ids = (function* () {
     }
 })();
 
-export const addCircle = (props) => {
+export const addRect = (props) => {
     return {
-        type: ADD_CIRCLE,
+        type: ADD_RECT,
         rect: {...props, id: ids.next().value}
     }
 }

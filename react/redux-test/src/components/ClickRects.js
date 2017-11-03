@@ -5,9 +5,10 @@ import * as d3 from 'd3';
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
 
-const INITIAL_WIDTH = 10;
-const CIRCLE_X_SPACE = 10;
-const CIRCLE_Y_SPACE = 10;
+const RECT_WIDTH = 50;
+const RECT_HEIGHT = 50;
+const RECT_X_SPACE = 100;
+const RECT_Y_SPACE = 100;
 const RECT_X_NUMBER = Math.max(Math.floor(WIDTH / (RECT_WIDTH + RECT_X_SPACE)), 1);
 const RECT_Y_NUMBER = Math.max(Math.floor(HEIGHT / (RECT_HEIGHT + RECT_Y_SPACE)), 1);
 
@@ -24,7 +25,7 @@ const positions = (function* () {
     }
 })();
 
-class ClickCircles extends Component {
+class ClickRects extends Component {
 
     componentDidMount() {
         this._draw();
@@ -35,39 +36,51 @@ class ClickCircles extends Component {
     }
 
     _draw() {
+
+        const width = d =>  d.width + 10 * d.clicks;
+        const height = d =>  d.height + 10 * d.clicks;
+
+
         const svg = d3.select("#canvas");
-        const selection = svg.selectAll("g.circle")
+        const selection = svg.selectAll("g.rect")
             .data(this.props.rects, d => d.id)
 
         const enterG = selection
             .enter()
             .append("g")
-            .attr("class", "circle")
+            .attr("class", "rect")
             .attr("transform", d => "translate(" + d.x + "," + d.y + ")")
 
-        enterG.append("circle")
-            .attr("cx", d => d.width/2)
-            .attr("cy", d => d.width/2)
+        enterG.append("rect")
+            .attr("width", d => d.width)
+            .attr("height", d => d.width)
             .attr("fill", d => d.color)
             .on("click", d => {
                 this.props.onClick(d.id)
             })
 
         enterG.append("text")
-            .attr("x", RECT_WIDTH/2)
-            .attr("y", RECT_HEIGHT/2)
+            .attr("x", d => width(d) / 2)
+            .attr("y", d => height(d) / 2)
 
-        svg.selectAll("g.circle")
-            .selectAll("circle")
+        svg.selectAll("g.rect")
+            .selectAll("rect")
             .data(d => [d])
-            .attr("r", d => d.clicks + 10)
+            .transition()
+            .duration(1000)
+            .attr("width", width)
+            .attr("height", height)
 
-        svg.selectAll("g.circle")
+        svg.selectAll("g.rect")
             .selectAll("text")
             .data(d => [d])
             .text(d => {
                 return d.clicks
             })
+            .transition()
+            .duration(1000)
+            .attr("x", d => width(d) / 2)
+            .attr("y", d => height(d) / 2)
     }
 
     _addRect(color) {
@@ -96,14 +109,15 @@ class ClickCircles extends Component {
 
 }
 
-ClickCircles.propTypes = {
+ClickRects.propTypes = {
     rects: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
             clicks: PropTypes.number.isRequired,
             x: PropTypes.number.isRequired,
             y: PropTypes.number.isRequired,
-            initialRadius: PropTypes.number.isRequired
+            width: PropTypes.number.isRequired,
+            height: PropTypes.number.isRequired
         })
     ),
     onClick: PropTypes.func.isRequired,
