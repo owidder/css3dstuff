@@ -1,3 +1,7 @@
 rect {
-  opacity: .5;
+    opacity: 1;
+}
+
+text {
+    fill: white;
 }

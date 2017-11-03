@@ -7,8 +7,8 @@ const HEIGHT = window.innerHeight;
 
 const RECT_WIDTH = 50;
 const RECT_HEIGHT = 50;
-const RECT_X_SPACE = 100;
-const RECT_Y_SPACE = 100;
+const RECT_X_SPACE = 10;
+const RECT_Y_SPACE = 300;
 const RECT_X_NUMBER = Math.max(Math.floor(WIDTH / (RECT_WIDTH + RECT_X_SPACE)), 1);
 const RECT_Y_NUMBER = Math.max(Math.floor(HEIGHT / (RECT_HEIGHT + RECT_Y_SPACE)), 1);
 
@@ -37,7 +37,6 @@ class ClickRects extends Component {
 
     _draw() {
 
-        const width = d =>  d.width + 10 * d.clicks;
         const height = d =>  d.height + 10 * d.clicks;
 
 
@@ -60,7 +59,7 @@ class ClickRects extends Component {
             })
 
         enterG.append("text")
-            .attr("x", d => width(d) / 2)
+            .attr("x", d => d.width / 2)
             .attr("y", d => height(d) / 2)
 
         svg.selectAll("g.rect")
@@ -68,7 +67,6 @@ class ClickRects extends Component {
             .data(d => [d])
             .transition()
             .duration(1000)
-            .attr("width", width)
             .attr("height", height)
 
         svg.selectAll("g.rect")
@@ -79,7 +77,6 @@ class ClickRects extends Component {
             })
             .transition()
             .duration(1000)
-            .attr("x", d => width(d) / 2)
             .attr("y", d => height(d) / 2)
     }
 
